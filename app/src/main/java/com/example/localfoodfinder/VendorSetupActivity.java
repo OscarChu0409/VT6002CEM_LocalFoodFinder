@@ -23,7 +23,7 @@ public class VendorSetupActivity extends AppCompatActivity {
 
     private EditText editTextBusinessName, editTextDescription, editTextPhone;
     private Button buttonSave;
-    
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -31,17 +31,17 @@ public class VendorSetupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_setup);
-        
+
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        
+
         // Initialize UI elements
         editTextBusinessName = findViewById(R.id.editTextBusinessName);
         editTextDescription = findViewById(R.id.editTextDescription);
         editTextPhone = findViewById(R.id.editTextPhone);
         buttonSave = findViewById(R.id.buttonSave);
-        
+
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,50 +49,50 @@ public class VendorSetupActivity extends AppCompatActivity {
             }
         });
     }
-    
+
     private void saveVendorInfo() {
         String businessName = editTextBusinessName.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
         String phone = editTextPhone.getText().toString().trim();
-        
+
         // Validate inputs
         if (TextUtils.isEmpty(businessName)) {
             editTextBusinessName.setError("Business name is required");
             return;
         }
-        
+
         if (TextUtils.isEmpty(description)) {
             editTextDescription.setError("Description is required");
             return;
         }
-        
+
         if (TextUtils.isEmpty(phone)) {
             editTextPhone.setError("Phone number is required");
             return;
         }
-        
+
         // Save vendor info to database
         String userId = mAuth.getCurrentUser().getUid();
-        
+
         HashMap<String, Object> vendorData = new HashMap<>();
         vendorData.put("businessName", businessName);
         vendorData.put("description", description);
         vendorData.put("phone", phone);
         vendorData.put("approved", false); // Vendors need approval before appearing in searches
-        
+
         mDatabase.child("vendors").child(userId).setValue(vendorData)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(VendorSetupActivity.this, 
-                                    "Vendor profile created successfully!", 
+                            Toast.makeText(VendorSetupActivity.this,
+                                    "Vendor profile created successfully!",
                                     Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(VendorSetupActivity.this, MainActivity.class));
                             finish();
                         } else {
-                            Toast.makeText(VendorSetupActivity.this, 
-                                    "Error: " + task.getException().getMessage(), 
+                            Toast.makeText(VendorSetupActivity.this,
+                                    "Error: " + task.getException().getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

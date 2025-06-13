@@ -1,31 +1,49 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("com.google.gms:google-services:4.4.0")
-    }
-}
+
 
 plugins {
-    id("com.android.application") // Only declare this once
-    id("com.google.gms.google-services")
+    alias(libs.plugins.android.application)
 }
 
+
+
 android {
-    // Your existing configuration
+    namespace = "com.example.localfoodfinder"
+    compileSdk = 35
+
+    defaultConfig {
+        applicationId = "com.example.localfoodfinder"
+        minSdk = 31
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 }
 
 dependencies {
-    // Firebase Authentication
+
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.activity)
+    implementation(libs.constraintlayout)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
     implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
-    
-    // Other dependencies
 }
-
-// Make sure you have the google-services.json file in your app directory
-// Download it from Firebase console: Project settings > Your apps > google-services.json
-
-

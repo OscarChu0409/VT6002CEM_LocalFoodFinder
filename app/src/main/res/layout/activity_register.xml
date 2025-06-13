@@ -20,7 +20,7 @@
         android:hint="Full Name"
         android:inputType="textPersonName"
         android:layout_marginBottom="12dp"/>
-        
+
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
@@ -36,21 +36,21 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:layout_marginBottom="12dp"/>
-    
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Select Account Type:"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"/>
-        
+
     <RadioGroup
         android:id="@+id/radioGroupRole"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="12dp">
-        
+
         <RadioButton
             android:id="@+id/radioButtonUser"
             android:layout_width="0dp"
@@ -58,7 +58,7 @@
             android:layout_weight="1"
             android:text="Public User"
             android:checked="true"/>
-            
+
         <RadioButton
             android:id="@+id/radioButtonVendor"
             android:layout_width="0dp"
@@ -66,14 +66,14 @@
             android:layout_weight="1"
             android:text="Food Vendor"/>
     </RadioGroup>
-        
+
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register"
         android:layout_marginTop="16dp"/>
-        
+
     <TextView
         android:id="@+id/textViewLogin"
         android:layout_width="match_parent"

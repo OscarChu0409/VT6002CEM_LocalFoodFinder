@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "139186228909",
+    "project_id": "localfoodfinder-42577",
+    "storage_bucket": "localfoodfinder-42577.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139186228909:android:3141c2305290dc77118024",
+        "android_client_info": {
+          "package_name": "com.example.localfoodfinder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBgNoZ8tciPIi7ApYnMjFqXrn5I3nUtA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

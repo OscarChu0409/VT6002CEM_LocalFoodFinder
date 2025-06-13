@@ -39,6 +39,23 @@
         android:inputType="phone"
         android:layout_marginBottom="12dp"/>
 
+    <!-- Add the missing EditText fields for latitude and longitude -->
+    <EditText
+        android:id="@+id/editTextLatitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Latitude (e.g., 37.7749)"
+        android:inputType="numberDecimal|numberSigned"
+        android:layout_marginBottom="12dp"/>
+
+    <EditText
+        android:id="@+id/editTextLongitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Longitude (e.g., -122.4194)"
+        android:inputType="numberDecimal|numberSigned"
+        android:layout_marginBottom="12dp"/>
+
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="match_parent"

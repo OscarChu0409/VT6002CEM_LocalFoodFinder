@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 public class VendorSetupActivity extends AppCompatActivity {
 
-    private EditText editTextBusinessName, editTextDescription, editTextPhone;
+    private EditText editTextBusinessName, editTextDescription, editTextPhone, editTextLatitude, editTextLongitude;
     private Button buttonSave;
 
     private FirebaseAuth mAuth;
@@ -40,6 +40,8 @@ public class VendorSetupActivity extends AppCompatActivity {
         editTextBusinessName = findViewById(R.id.editTextBusinessName);
         editTextDescription = findViewById(R.id.editTextDescription);
         editTextPhone = findViewById(R.id.editTextPhone);
+        editTextLatitude = findViewById(R.id.editTextLatitude);
+        editTextLongitude = findViewById(R.id.editTextLongitude);
         buttonSave = findViewById(R.id.buttonSave);
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +56,8 @@ public class VendorSetupActivity extends AppCompatActivity {
         String businessName = editTextBusinessName.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
         String phone = editTextPhone.getText().toString().trim();
+        String latitudeStr = editTextLatitude.getText().toString().trim();
+        String longitudeStr = editTextLongitude.getText().toString().trim();
 
         // Validate inputs
         if (TextUtils.isEmpty(businessName)) {
@@ -71,6 +75,17 @@ public class VendorSetupActivity extends AppCompatActivity {
             return;
         }
 
+        // Parse latitude and longitude
+        double latitude = 0.0;
+        double longitude = 0.0;
+        try {
+            if (!TextUtils.isEmpty(latitudeStr)) latitude = Double.parseDouble(latitudeStr);
+            if (!TextUtils.isEmpty(longitudeStr)) longitude = Double.parseDouble(longitudeStr);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Invalid location format", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Save vendor info to database
         String userId = mAuth.getCurrentUser().getUid();
 
@@ -78,6 +93,8 @@ public class VendorSetupActivity extends AppCompatActivity {
         vendorData.put("businessName", businessName);
         vendorData.put("description", description);
         vendorData.put("phone", phone);
+        vendorData.put("latitude", latitude);
+        vendorData.put("longitude", longitude);
         vendorData.put("approved", false); // Vendors need approval before appearing in searches
 
         mDatabase.child("vendors").child(userId).setValue(vendorData)

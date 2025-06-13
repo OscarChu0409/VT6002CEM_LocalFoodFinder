@@ -87,13 +87,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupUIForRole() {
-        // You can customize the UI based on the user role
         if (userRole != null && userRole.equals("vendor")) {
             // Show vendor-specific UI elements
             // For example, show a button to manage vendor profile, menu items, etc.
         } else {
-            // Show regular user UI elements
-            // For example, show a map to find vendors
+            // Show map for regular users
+            getSupportFragmentManager().beginTransaction()
+                .replace(R.id.contentFrame, new MapFragment())
+                .commit();
         }
     }
 
@@ -122,4 +123,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
 

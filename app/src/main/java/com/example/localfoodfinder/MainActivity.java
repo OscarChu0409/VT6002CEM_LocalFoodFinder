@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mUserRef;
     private TextView textViewWelcome;
     private String userRole;
+    private Button buttonUpdateLocation;
+    private Button buttonManageMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,28 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize UI elements
         textViewWelcome = findViewById(R.id.textViewWelcome);
+        buttonUpdateLocation = findViewById(R.id.buttonUpdateLocation);
+        buttonManageMenu = findViewById(R.id.buttonManageMenu);
+
+        // Initially hide the update location and manage menu buttons
+        buttonUpdateLocation.setVisibility(View.GONE);
+        buttonManageMenu.setVisibility(View.GONE);
+
+        // Set click listener for update location button
+        buttonUpdateLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, VendorSetupActivity.class));
+            }
+        });
+
+        // Set click listener for manage menu button
+        buttonManageMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MenuUploadActivity.class));
+            }
+        });
 
         // Check if user is logged in
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -89,12 +115,32 @@ public class MainActivity extends AppCompatActivity {
     private void setupUIForRole() {
         if (userRole != null && userRole.equals("vendor")) {
             // Show vendor-specific UI elements
-            // For example, show a button to manage vendor profile, menu items, etc.
+            buttonUpdateLocation.setVisibility(View.VISIBLE);
+
+            // Add QR code button for vendors
+            Button buttonGenerateQR = findViewById(R.id.buttonGenerateQR);
+            buttonGenerateQR.setVisibility(View.VISIBLE);
+            buttonGenerateQR.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, VendorQRCodeActivity.class));
+                }
+            });
         } else {
             // Show map for regular users
             getSupportFragmentManager().beginTransaction()
-                .replace(R.id.contentFrame, new MapFragment())
-                .commit();
+                    .replace(R.id.contentFrame, new MapFragment())
+                    .commit();
+
+            // Add scan QR code button for users
+            Button buttonScanQR = findViewById(R.id.buttonScanQR);
+            buttonScanQR.setVisibility(View.VISIBLE);
+            buttonScanQR.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, QRScannerActivity.class));
+                }
+            });
         }
     }
 
@@ -108,9 +154,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_profile) {
-            // Handle profile action
-            Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show();
+        if (id == R.id.action_search) {
+            // Navigate to search activity
+            startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            return true;
+        } else if (id == R.id.action_profile) {
+            // Navigate to profile activity
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
             return true;
         } else if (id == R.id.action_logout) {
             // Sign out user

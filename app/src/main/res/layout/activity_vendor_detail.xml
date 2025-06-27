@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VendorDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Vendor Details Section -->
+        <TextView
+            android:id="@+id/textViewBusinessName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Business Name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <RatingBar
+                android:id="@+id/ratingBarVendor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                style="?android:attr/ratingBarStyleSmall"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/textViewRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.5 (23)"
+                android:layout_marginStart="8dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewBusinessHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hours: 9:00 AM - 5:00 PM"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dietary Options"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/textViewDietaryOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Menu"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/imageViewMenuPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="#EEEEEE"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/textViewNoMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No menu photo available"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/textViewPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone: 123-456-7890"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/buttonDirections"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Directions"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Review Section -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reviews"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Add Review Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Write a Review"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <RatingBar
+            android:id="@+id/ratingBarUserReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editTextReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Write your review here"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:gravity="top|start"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/buttonSubmitReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Review"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Reviews List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewReviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"/>
+
+        <!-- Add this at the end of the LinearLayout, after the RecyclerView -->
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
+
+

@@ -1,75 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:fillViewport="true">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vendor Setup"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:layout_marginBottom="24dp"/>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextBusinessName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Business Name"
-        android:inputType="text"
-        android:layout_marginBottom="12dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vendor Setup"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
 
-    <EditText
-        android:id="@+id/editTextDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Business Description"
-        android:inputType="textMultiLine"
-        android:minLines="3"
-        android:gravity="top|start"
-        android:layout_marginBottom="12dp"/>
+        <EditText
+            android:id="@+id/editTextBusinessName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Business Name"
+            android:inputType="text"
+            android:layout_marginBottom="12dp"/>
 
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        android:layout_marginBottom="12dp"/>
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Business Description"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:gravity="top|start"
+            android:layout_marginBottom="12dp"/>
 
-    <!-- Add the missing EditText fields for latitude and longitude -->
-    <EditText
-        android:id="@+id/editTextLatitude"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Latitude (e.g., 37.7749)"
-        android:inputType="numberDecimal|numberSigned"
-        android:layout_marginBottom="12dp"/>
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:layout_marginBottom="12dp"/>
 
-    <EditText
-        android:id="@+id/editTextLongitude"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Longitude (e.g., -122.4194)"
-        android:inputType="numberDecimal|numberSigned"
-        android:layout_marginBottom="12dp"/>
+        <!-- Business Hours Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Business Hours"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
 
-    <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save and Continue"
-        android:layout_marginTop="16dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Note: Your vendor account will need approval before appearing in search results."
-        android:textSize="14sp"
-        android:textStyle="italic"
-        android:gravity="center"
-        android:layout_marginTop="24dp"/>
+            <EditText
+                android:id="@+id/editTextOpenTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Opening Time (e.g., 9:00 AM)"
+                android:inputType="text"
+                android:layout_marginEnd="8dp"/>
 
-</LinearLayout>
+            <EditText
+                android:id="@+id/editTextCloseTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Closing Time (e.g., 5:00 PM)"
+                android:inputType="text"/>
+        </LinearLayout>
+
+        <!-- Location Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editTextLatitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Latitude (e.g., 37.7749)"
+            android:inputType="numberDecimal|numberSigned"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/editTextLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Longitude (e.g., -122.4194)"
+            android:inputType="numberDecimal|numberSigned"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/buttonGetLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Current Location"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save and Continue"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Note: Your vendor account will need approval before appearing in search results."
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:layout_marginTop="24dp"/>
+
+        <!-- Add this section before the menu photo section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dietary Options"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <CheckBox
+                android:id="@+id/checkBoxVegan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vegan Options Available"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxHalal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Halal Options Available"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxGlutenFree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gluten-Free Options Available"/>
+        </LinearLayout>
+
+        <!-- Add this section after the dietary options section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Menu Photo"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/buttonUploadMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Manage Menu Photo"
+                android:drawableStart="@android:drawable/ic_menu_camera"
+                android:layout_marginBottom="8dp"/>
+
+            <ImageView
+                android:id="@+id/imageViewMenu"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:background="#EEEEEE"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/textViewMenuStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No menu photo uploaded"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
